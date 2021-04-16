@@ -1,4 +1,4 @@
-package Integraci.nSoluciones.Ventas;
+package com.example.ventas;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 // DTO
 @Entity
-public class Ventas {
+public class ProductosV {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 

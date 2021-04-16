@@ -1,28 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integracion.Soluciones/ventas" xmlns:tns="http://www.integracion.soluciones" elementFormDefault="qualified">
-    
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/ventas" xmlns:tns="http://www.example.org/ventas" elementFormDefault="qualified">
+
+
     <element name="RealizarVentaRequest">
         <complexType>
             <sequence>
-                <element name="nombreProduc" type="string"></element>
-                <sequence>
-                    <element name="descripcion" type="string"></element>
-                    <sequence>
-                        <element name="precio" type="int"></element>
-                        <sequence>
-                            <element name="productoDisp" type="int"></element>
-                        </sequence>
-                    </sequence>
-                </sequence>
+                <element name="idproducto" type="int"></element>
+                <element name="nombre" type="string"></element>
+                <element name="descripcion" type="string"></element>
+                <element name="precioU" type="int"></element>
+                <element name="enStock" type="string"></element>
             </sequence>
         </complexType>
     </element>
 
     <element name="RealizarVentaResponse">
-    <complexType>
-        <sequence>
-            <element name="respuesta" type="string"> </element>
-        </sequence>
-    </complexType>
-</element>
+        <complexType>
+            <sequence>
+                <element name="respuesta" type="string"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="ModificarVentaRequest">
+        <complexType>
+            <sequence>
+                <element name="idproducto" type="int"></element>
+                <element name="precioU" type="int"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="ModificarVentaResponse">
+        <complexType />
+    </element>
+
+    <element name="EliminarVentaRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="EliminarVentaResponse">
+        <complexType>
+            <sequence>
+                <element name="respuesta" type="string"></element>
+            </sequence>
+        </complexType>
+    </element>
 </schema>
