@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integracion.Soluciones/ventas" xmlns:tns="http://www.integracion.soluciones" elementFormDefault="qualified">
+    
+    <element name="RealizarVentaRequest">
+        <complexType>
+            <sequence>
+                <element name="nombreProduc" type="string"></element>
+                <sequence>
+                    <element name="descripcion" type="string"></element>
+                    <sequence>
+                        <element name="precio" type="int"></element>
+                        <sequence>
+                            <element name="productoDisp" type="int"></element>
+                        </sequence>
+                    </sequence>
+                </sequence>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="RealizarVentaResponse">
+    <complexType>
+        <sequence>
+            <element name="respuesta" type="string"> </element>
+        </sequence>
+    </complexType>
+</element>
+</schema>
