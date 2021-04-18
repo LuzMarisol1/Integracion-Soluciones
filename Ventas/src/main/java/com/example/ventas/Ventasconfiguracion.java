@@ -36,7 +36,7 @@ public class Ventasconfiguracion extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl = new DefaultWsdl11Definition();
         wsdl.setPortTypeName("ventasPort");
         wsdl.setLocationUri("/ws/ventas");
-        wsdl.setTargetNamespace("http://www.example.org/ventas");
+        wsdl.setTargetNamespace("http://tell.me/ventas");
         wsdl.setSchema(ventasSchema);
         return wsdl;
     }

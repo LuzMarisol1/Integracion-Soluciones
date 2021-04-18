@@ -1,7 +1,5 @@
 package com.example.ventas;
 
-import org.example.ventas.ModificarVentaRequest;
-import org.example.ventas.ModificarVentaResponse;
 import org.example.ventas.RealizarVentaRequest;
 import org.example.ventas.RealizarVentaResponse;
 
@@ -16,14 +14,15 @@ public class VentasEndPoint {
   @Autowired
   private iventas iventas;
 
-  @PayloadRoot(namespace = "http://www.example.org/ventas", localPart = "SaludarRequest")
+  @PayloadRoot(namespace = "http://tell.me/ventas", localPart = "RealizarVentaRequest")
 
   @ResponsePayload
   public RealizarVentaResponse guardaVenta(@RequestPayload RealizarVentaRequest peticion) {
     RealizarVentaResponse respuesta = new RealizarVentaResponse();
-    respuesta.setRespuesta("Venta realizada " + peticion.getNombre());
+    respuesta.setRespuesta("Venta realizada ");
 
     ProductosV productosv = new ProductosV();
+    productosv.setIdproducto(peticion.getIdproducto());
     productosv.setNombre(peticion.getNombre());
     productosv.setDescripcion(peticion.getDescripcion());
     productosv.setPrecioU(peticion.getPrecioU());
