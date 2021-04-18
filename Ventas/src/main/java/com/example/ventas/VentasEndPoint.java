@@ -1,4 +1,9 @@
-/*package com.example.ventas;
+package com.example.ventas;
+
+import org.example.ventas.ModificarVentaRequest;
+import org.example.ventas.ModificarVentaResponse;
+import org.example.ventas.RealizarVentaRequest;
+import org.example.ventas.RealizarVentaResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -8,37 +13,23 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class VentasEndPoint {
-    @Autowired
-    private VentasEndPoint isaludadores;
+  @Autowired
+  private iventas iventas;
 
-    //@PayloadRoot(namespace = "http://www.example.org/ventas", localPart = "SaludarRequest")
+  @PayloadRoot(namespace = "http://www.example.org/ventas", localPart = "SaludarRequest")
 
-    /*@ResponsePayload
-    public V dameSaludo(@RequestPayload SaludarRequest peticion){
-        SaludarResponse respuesta  = new SaludarResponse();
-        respuesta.setRespuesta("Hola " + peticion.getNombre());
+  @ResponsePayload
+  public RealizarVentaResponse guardaVenta(@RequestPayload RealizarVentaRequest peticion) {
+    RealizarVentaResponse respuesta = new RealizarVentaResponse();
+    respuesta.setRespuesta("Venta realizada " + peticion.getNombre());
 
-        Saludadores saludadores = new Saludadores();
-        saludadores.setNombre(peticion.getNombre());
-        isaludadores.save(saludadores);
+    ProductosV productosv = new ProductosV();
+    productosv.setNombre(peticion.getNombre());
+    productosv.setDescripcion(peticion.getDescripcion());
+    productosv.setPrecioU(peticion.getPrecioU());
+    productosv.setEnStock(peticion.getEnStock());
+    iventas.save(productosv);
 
-        return respuesta;
-    }
-
-    @PayloadRoot(namespace = "http://tell.me/mensajes", localPart = "BuscarSaludosRequest")
-
-    @ResponsePayload
-    public BuscarSaludosResponse dameSaludadores(@RequestPayload BuscarSaludosRequest peticion){
-        BuscarSaludosResponse respuesta = new BuscarSaludosResponse();
-        Iterable<Saludadores>listaSaludadores = isaludadores.findAll();
-        
-        for(Saludadores ls : listaSaludadores){
-            BuscarSaludosResponse.Saludador saludador = new  BuscarSaludosResponse.Saludador();
-            saludador.setNombre(ls.getNombre());
-            saludador.setId(ls.getId());
-            respuesta.getSaludador().add(saludador);
-        }
-        return respuesta;
-    }
+    return respuesta;
+  }
 }
-*/
