@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" 
-targetNamespace="http://tell.me/mensajes" xmlns:tns="http://www.tell.me" elementFormDefault="qualified">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tell.me/mensajes" xmlns:tns="http://www.tell.me" elementFormDefault="qualified">
 
     <element name="SaludarRequest">
         <complexType>
@@ -19,7 +18,7 @@ targetNamespace="http://tell.me/mensajes" xmlns:tns="http://www.tell.me" element
     </element>
 
     <element name="BuscarSaludosRequest">
-        <complexType/>
+        <complexType />
     </element>
 
     <element name="BuscarSaludosResponse">
@@ -35,5 +34,38 @@ targetNamespace="http://tell.me/mensajes" xmlns:tns="http://www.tell.me" element
                 </element>
             </sequence>
         </complexType>
-    </element> 
+    </element>
+
+    <element name="ModificarSaludosRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"></element>
+                <element name="nombre" type="string"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="ModificarSaludosResponse">
+        <complexType>
+            <sequence>
+                <element name="respuesta" type="string"></element>
+            </sequence>
+        </complexType>
+    </element>
+    
+    <element name="BorrarSaludosRequest">
+        <complexType>
+            <sequence>
+                <element name="id" type="int"></element>
+            </sequence>
+        </complexType>
+    </element>
+
+    <element name="BorrarSaludosResponse">
+        <complexType>
+            <sequence>
+                <element name="respuesta" type="string"></element>
+            </sequence>
+        </complexType>
+    </element>
 </schema>

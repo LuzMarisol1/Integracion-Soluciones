@@ -5,6 +5,27 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "Launch MensajesApplication",
+            "request": "launch",
+            "mainClass": "com.example.mensajes.MensajesApplication",
+            "projectName": "mensajes"
+        },
+        {
+            "type": "java",
+            "name": "Launch VentasApplication",
+            "request": "launch",
+            "mainClass": "com.example.ventas.VentasApplication",
+            "projectName": "Ventas"
+        },
+        {
+            "type": "java",
+            "name": "Launch VentasApplication",
+            "request": "launch",
+            "mainClass": "com.example.ventas.VentasApplication",
+            "projectName": "ventas"
+        },
+        {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",

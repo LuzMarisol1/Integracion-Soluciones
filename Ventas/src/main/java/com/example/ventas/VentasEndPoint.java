@@ -1,8 +1,10 @@
 package com.example.ventas;
 
-import org.example.ventas.RealizarVentaRequest;
-import org.example.ventas.RealizarVentaResponse;
-
+import me.tell.ventas.EliminarVentaRequest;
+import me.tell.ventas.EliminarVentaResponse;
+import me.tell.ventas.MostrarVentaResponse;
+import me.tell.ventas.RealizarVentaRequest;
+import me.tell.ventas.RealizarVentaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -11,18 +13,20 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class VentasEndPoint {
+
   @Autowired
-  private iventas iventas;
+  private Iventas iventas;
 
   @PayloadRoot(namespace = "http://tell.me/ventas", localPart = "RealizarVentaRequest")
 
   @ResponsePayload
-  public RealizarVentaResponse guardaVenta(@RequestPayload RealizarVentaRequest peticion) {
+  public RealizarVentaResponse guardaVenta(
+    @RequestPayload RealizarVentaRequest peticion) {
+
     RealizarVentaResponse respuesta = new RealizarVentaResponse();
-    respuesta.setRespuesta("Venta realizada ");
+    respuesta.setRespuesta("Venta Realizada " + peticion.getNombre());
 
     ProductosV productosv = new ProductosV();
-    productosv.setIdproducto(peticion.getIdproducto());
     productosv.setNombre(peticion.getNombre());
     productosv.setDescripcion(peticion.getDescripcion());
     productosv.setPrecioU(peticion.getPrecioU());
@@ -31,4 +35,38 @@ public class VentasEndPoint {
 
     return respuesta;
   }
+
+  @PayloadRoot(namespace = "http://tell.me/ventas", localPart = "MostrarVentaRequest")
+
+    @ResponsePayload
+    public MostrarVentaResponse dameventas(){
+      MostrarVentaResponse respuesta = new MostrarVentaResponse();
+    Iterable<ProductosV> listaVentas = iventas.findAll();
+
+    for(ProductosV ls : listaVentas){
+    
+    MostrarVentaResponse.EmpleadoV saludador = new MostrarVentaResponse.EmpleadoV();
+    saludador.setIdproducto(ls.getIdproducto());
+    saludador.setNombre(ls.getNombre());
+    saludador.setDescripcion(ls.getDescripcion());
+    saludador.setPrecioU(ls.getPrecioU());
+    saludador.setEnStock(ls.getEnStock());
+    respuesta.getEmpleadoV().add(saludador);
+  }
+  return respuesta;
+}
+
+  @PayloadRoot(namespace = "http://tell.me/ventas",localPart = "EliminarVentaRequest")
+
+  @ResponsePayload
+  public EliminarVentaResponse borrarsaludo(
+    @RequestPayload EliminarVentaRequest peticion) {
+    EliminarVentaResponse respuesta = new EliminarVentaResponse();
+    respuesta.setRespuesta("Eliminado correctamente el id " + peticion.getId());
+    //validad que no existe
+    iventas.deleteById(peticion.getId());
+    return respuesta;
+  }
+
+
 }

@@ -23,6 +23,7 @@ public class Ventasconfiguracion extends WsConfigurerAdapter {
     public XsdSchema ventasSchema() {
         return new SimpleXsdSchema(new ClassPathResource("ventas.xsd"));
     }
+
     @Bean
     public ServletRegistrationBean messageDispatcheServelet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
