@@ -2,9 +2,14 @@ package com.example.ventas;
 
 import me.tell.ventas.EliminarVentaRequest;
 import me.tell.ventas.EliminarVentaResponse;
+import me.tell.ventas.ModificarVentaRequest;
+import me.tell.ventas.ModificarVentaResponse;
 import me.tell.ventas.MostrarVentaResponse;
 import me.tell.ventas.RealizarVentaRequest;
 import me.tell.ventas.RealizarVentaResponse;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -20,8 +25,7 @@ public class VentasEndPoint {
   @PayloadRoot(namespace = "http://tell.me/ventas", localPart = "RealizarVentaRequest")
 
   @ResponsePayload
-  public RealizarVentaResponse guardaVenta(
-    @RequestPayload RealizarVentaRequest peticion) {
+  public RealizarVentaResponse guardaVenta(@RequestPayload RealizarVentaRequest peticion) {
 
     RealizarVentaResponse respuesta = new RealizarVentaResponse();
     respuesta.setRespuesta("Venta Realizada " + peticion.getNombre());
@@ -56,6 +60,26 @@ public class VentasEndPoint {
   return respuesta;
 }
 
+@PayloadRoot(namespace = "http://tell.me/ventas", localPart = "ModificarVentaRequest")
+
+   @ResponsePayload
+   public ModificarVentaResponse modificarsaludo(@RequestPayload ModificarVentaRequest peticion){
+    ModificarVentaResponse respuesta = new ModificarVentaResponse();
+
+      Optional<ProductosV> s = iventas.findById(peticion.getIdproducto());
+      
+      if(s.isPresent()){
+          ProductosV productosv = new ProductosV();
+          productosv = s.get();
+          productosv.setNombre(peticion.getNombre());
+          productosv.setPrecioU(peticion.getPrecioU());
+          respuesta.setRespuesta("Se modifico " + peticion.getNombre());
+        }else{
+            respuesta.setRespuesta("Id no existe " + peticion.getIdproducto());
+        } 
+        return respuesta;
+    }
+
   @PayloadRoot(namespace = "http://tell.me/ventas",localPart = "EliminarVentaRequest")
 
   @ResponsePayload
@@ -67,6 +91,6 @@ public class VentasEndPoint {
     iventas.deleteById(peticion.getId());
     return respuesta;
   }
-
-
-}
+  
+  
+  }

@@ -46,13 +46,18 @@
         <complexType>
             <sequence>
                 <element name="idproducto" type="int"></element>
+                <element name="nombre" type="string"></element>
                 <element name="precioU" type="int"></element>
             </sequence>
         </complexType>
     </element>
 
     <element name="ModificarVentaResponse">
-        <complexType />
+        <complexType>
+            <sequence>
+                <element name="respuesta" type="string"></element>
+            </sequence>
+        </complexType>
     </element>
 
     <element name="EliminarVentaRequest">

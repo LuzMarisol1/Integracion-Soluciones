@@ -53,7 +53,7 @@ public class MensajesEndPoint {
         return respuesta;
     }
 
-    @PayloadRoot(namespace = "http://tell.me/mensajes", localPart = "ModificarSaludoRequest")
+    @PayloadRoot(namespace = "http://tell.me/mensajes", localPart = "ModificarSaludosRequest")
 
    @ResponsePayload
    public ModificarSaludosResponse modificarsaludo(@RequestPayload ModificarSaludosRequest peticion){
@@ -68,7 +68,7 @@ public class MensajesEndPoint {
             isaludadores.save(saludadores);
             respuesta.setRespuesta("Se modifico " + peticion.getNombre());
         }else{
-            respuesta.setRespuesta("Id no existe " + peticion.getId());
+            respuesta.setRespuesta("i d no existe " + peticion.getId());
         }
         return respuesta;
     }
